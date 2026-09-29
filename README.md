@@ -1,4 +1,10 @@
-# HandoffOS
+## Demo
+
+🎥 **YouTube Demo:** https://youtu.be/VQcZFJq2ThU
+
+🌐 **Live Demo:** https://handoffos.onrender.com/
+
+📝 **Technical Article:** https://handoffos.hashnode.dev/handoffos-teaching-ai-to-remember-why-engineering-decisions-were-made# HandoffOS
 
 ## The AI That Inherits a Human's Knowledge
 
