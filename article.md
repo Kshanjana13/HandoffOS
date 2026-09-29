@@ -18,10 +18,10 @@ I modeled this as a memory problem.
 
 The agent needs to remember four kinds of things:
 
-- what happened
-- why a decision was made
-- what hidden dependency existed
-- what happened after the decision
+* what happened
+* why a decision was made
+* what hidden dependency existed
+* what happened after the decision
 
 Hindsight is the memory layer that makes that possible.
 
@@ -68,21 +68,13 @@ const recalled = await client.recall(
 );
 ```
 
-Hindsight's recall operation searches the memory bank using multiple retrieval strategies, including semantic, keyword, entity and temporal reasoning.
+Hindsight's recall operation searches the memory bank for relevant historical context.
 
 The recalled context contains the two migration failures, the ABC dependency, and the reason the service was deliberately kept.
 
-HandoffOS then uses `reflect` to reason over that context:
+HandoffOS then analyzes that recalled evidence against the proposed action and produces a safety decision.
 
-```js
-const response = await client.reflect(
-  BANK_ID,
-  `Evaluate this proposed engineering action using organizational memory.
-   Action: ${action}.
-   Identify relevant historical failures, dependencies, previous decisions
-   and the exact condition that would make the action safe today.`
-);
-```
+In the working demo, this evidence analysis happens in HandoffOS after Hindsight recall.
 
 The result is a high-risk warning.
 
@@ -113,7 +105,7 @@ await client.retain(
 );
 ```
 
-Then it recalls the new evidence together with the historical context and reflects again.
+Then it recalls the new evidence together with the historical context and updates the current safety state.
 
 The current state can now change from:
 
@@ -151,7 +143,9 @@ The second lesson was that temporal context matters. A warning from last year an
 
 The third lesson was that the handoff itself should be testable. That is why HandoffOS includes a rehearsal where a successor has to explain why a decision existed, which dependency mattered, and what changed.
 
-The final lesson was that the UI should make the memory trace visible. A judge or engineer should be able to see: retain → recall → reflect → action.
+The final lesson was that the UI should make the memory trace visible. A judge or engineer should be able to see:
+
+**retain → recall → evidence analysis → action**
 
 That is much more convincing than a chatbot saying “I remember.”
 
