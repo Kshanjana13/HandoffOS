@@ -1,12 +1,16 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { HindsightClient } from "@vectorize-io/hindsight-client";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "1mb" }));
+
+// Serve the Vite production frontend
+app.use(express.static(path.join(process.cwd(), "dist")));
 
 const PORT = process.env.PORT || 8787;
 const BANK_ID = process.env.HINDSIGHT_BANK_ID || "handoffos-demo";
@@ -425,6 +429,14 @@ app.get("/api/memories", async (_req, res) => {
       error: e?.message || "Memory listing failed",
     });
   }
+});
+
+// ------------------------------------------------------------
+// Serve React frontend
+// ------------------------------------------------------------
+
+app.get(/^(?!\/api).*/, (_req, res) => {
+  res.sendFile(path.join(process.cwd(), "dist", "index.html"));
 });
 
 // ------------------------------------------------------------
