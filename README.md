@@ -1,42 +1,56 @@
 # HandoffOS
 
-Hackathon-ready demo MVP for Microsoft AI hackathons.
+## The AI That Inherits a Human's Knowledge
 
-## Run locally
-1. Install Node.js 18+.
-2. In this folder run:
-   npm install
-   npm run dev
-3. Open the local URL Vite prints.
+HandoffOS is an AI-powered organizational memory and knowledge handoff system built with **Hindsight**.
 
-## Demo script
-1. Overview → show Maya departure alert.
-2. Pre-Flight Check → show STOP state for deleting Legacy Auth.
-3. Click Verify evidence → show historical state preserved and current state CLEARED.
-4. Ghost Knowledge → show Maya's 84% concentration and undocumented workarounds.
-5. Decision Genealogy → show why the decision existed.
-6. Handoff Rehearsal → answer all four questions correctly for a verified handoff.
-7. Knowledge Graph → finish with the relationship map.
+It helps engineering teams preserve critical institutional knowledge, retrieve the reasoning behind past decisions, and prevent repeated operational mistakes when experienced people leave.
 
-## Microsoft architecture
-The app is intentionally demo-mode and uses seeded data, so it works without credentials. The Architecture panel shows the intended Microsoft production stack: Microsoft Graph, Azure OpenAI, Azure AI Search, Cosmos DB, Teams/SharePoint and GitHub.
+### The problem
 
+Important engineering knowledge often exists only in people's heads:
 
-## Submission checklist from the challenge guide
+- Why a legacy system still exists
+- Which migration attempts previously failed
+- Which customers still depend on an old service
+- What workarounds engineers discovered
+- Why a seemingly safe change should not be made yet
 
-- [x] Real business problem
-- [x] Hindsight is the required persistent memory layer
-- [x] Retain + recall + reflect are visible in the core workflow
-- [x] Memory changes agent behavior
-- [x] Before/after learning curve
-- [x] Realistic synthetic engineering data
-- [x] Focused workflow: one persona, one clear safety value proposition
-- [x] GitHub-ready documented project
-- [ ] Publish the repository
-- [ ] Record and publish the 2–5 minute demo video
-- [ ] Publish the technical article publicly
-- [ ] Publish the social post
-- [ ] Add the public project GitHub URL to the social post
-- [ ] Add the Hindsight GitHub URL as the social-post comment
+When a senior engineer leaves, that context can disappear with them.
 
-Content drafts are included in `article.md`, `linkedin-post.md`, and `video-script.md`.
+HandoffOS turns that knowledge into persistent, retrievable organizational memory.
+
+---
+
+## How Hindsight is used
+
+Hindsight is the persistent memory layer of HandoffOS.
+
+The application uses Hindsight to:
+
+1. **Retain** engineering memories, incidents, decisions, dependencies, workarounds, and handoff information.
+2. **Recall** relevant historical memories when an engineer proposes an action.
+3. Use the recalled evidence to determine whether the proposed action should proceed.
+4. **Retain new verified evidence** when the current situation changes.
+5. Recall both historical and newly verified information while preserving the original history.
+
+The core memory flow is:
+
+```text
+Engineer proposes action
+        ↓
+Hindsight Recall
+        ↓
+Historical evidence
+        ↓
+HandoffOS evidence analysis
+        ↓
+Safety decision
+        ↓
+New verified evidence
+        ↓
+Hindsight Retain
+        ↓
+Recall updated context
+        ↓
+Current state updated
