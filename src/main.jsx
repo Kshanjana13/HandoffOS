@@ -117,8 +117,7 @@ function Card({children, className=""}) {
 }
 
 /* HandoffOS backend */
-const API = "http://localhost:8787";
-
+const API = "";
 async function api(path, options={}) {
   const r = await fetch(`${API}${path}`, {
     headers: {
